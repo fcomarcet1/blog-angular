@@ -20,10 +20,11 @@ export class RegisterComponent implements OnInit {
     private _userService: UserService
   ) {
     this.pageTitle = 'Registro';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '');
+    this.user = new User(20, '', '', 'ROLE_USER', '', '', '', '');
   }
 
-  ngOnInit(): void {
+  // tslint:disable-next-line:typedef
+  ngOnInit() {
     console.log(this._userService.test());
   }
 
@@ -31,6 +32,16 @@ export class RegisterComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit(form) {
     console.log(this.user);
-    form.reset();
+    this._userService.register(this.user).subscribe(
+      // Get data from API
+      response => {
+        console.log(response);
+        form.reset();
+      },
+      error => {
+        console.log(error as any);
+      }
+    );
+
   }
 }
