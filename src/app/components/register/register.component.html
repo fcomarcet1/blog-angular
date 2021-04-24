@@ -1,0 +1,36 @@
+<div class="col-md-12 mt-3">
+  <h1>{{pageTitle}}</h1>
+  <p>Registrate en nuestra plataforma para crear nuevas entradas y mucho más.</p>
+  <!-- Register Form -->
+  <form class="col-md-5 ml-0 pl-0" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" class="form-control" [(ngModel)]="user.name" #name="ngModel"
+             required  minlength="2" pattern="[a-zA-Z]+">
+      <small class="invalid-feedback d-block" *ngIf="name.touched && !name.valid">El nombre no es valido</small>
+    </div>
+    <div class="form-group">
+      <label for="surname">Apellidos</label>
+      <input type="text" id="surname"  name="surname" class="form-control" [(ngModel)]="user.surname" #surname="ngModel"
+             required minlength="4" pattern="[a-zA-Z]+">
+      <small class="invalid-feedback d-block" *ngIf="surname.touched && !surname.valid">Los apellidos no son validos</small>
+    </div>
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input id="email" type="email" name="email" class="form-control" [(ngModel)]="user.email" #email="ngModel"
+             required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+      <small class="invalid-feedback d-block" *ngIf="email.touched && !email.valid">El email no es valido</small>
+    </div>
+    <div class="form-group">
+      <label for="name">Password</label>
+      <input id="password" type="password" name="password" class="form-control" [(ngModel)]="user.password" #password="ngModel"
+             required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" >
+      <small class="invalid-feedback d-block" *ngIf="password.touched && !password.valid">
+        Debe contenener al menos un numero, una letra mayuscula, una letra minuscula, y almenos 6 o mas caracteres
+      </small>
+    </div>
+    <input class="btn btn-success" type="submit" value="Registrarse" [disabled]="registerForm.invalid" >
+  </form>
+</div>
+
+

@@ -1,0 +1,42 @@
+<div class="col-md-12 mt-3">
+  <h1>{{pageTitle}}</h1>
+  <p>Registrate en nuestra plataforma para crear nuevas entradas y mucho más.</p>
+
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div class="row mt-4">
+      <div class="col-md-6 mx-auto">
+        <div class="card card-body">
+          <h3 class="text-center mb-4">Registrate</h3>
+          <div class="alert alert-danger">
+            <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
+          </div>
+          <fieldset>
+            <div class="form-group has-success">
+              <input class="form-control input-lg" type="text" placeholder="Nombre"
+                     #name="ngModel" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}" required pattern="[a-zA-Z]+" >
+              <small class="invalid-feedback d-block" *ngIf="!name.valid && name.touched">El nombre no es valido</small>
+            </div>
+            <div class="form-group has-success">
+              <input class="form-control input-lg" type="text" placeholder="Apellidos" #surname="ngModel" [(ngModel)]="user.surname" >
+            </div>
+            <div class="form-group has-success">
+              <input class="form-control input-lg" placeholder="E-mail" name="email" type="email">
+            </div>
+            <div class="form-group has-success">
+              <input class="form-control input-lg" placeholder="Password" name="password" type="password">
+            </div>
+            <div class="checkbox">
+              <label class="small">
+                <input name="terms" type="checkbox">He leido y estoy de acuerdo con los <a href="#">terminos de servicio</a>
+              </label>
+            </div>
+            <input class="btn btn-lg btn-primary btn-block" value="Registarse" type="submit">
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
