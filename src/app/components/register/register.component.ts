@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   public pageTitle: string;
   public user: User;
   public form: Form;
+  public status: string;
 
   constructor(
     // tslint:disable-next-line:variable-name
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
-    console.log(this._userService.test());
+    //console.log(this._userService.test());
   }
 
 
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this._userService.register(this.user).subscribe(
       // Get data from API
       response => {
-        console.log(response);
+        console.log(response); // Will show you the status
         form.reset();
       },
       error => {

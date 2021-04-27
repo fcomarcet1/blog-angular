@@ -31,10 +31,23 @@ export class UserService {
     let json = JSON.stringify(user);
     let params = 'json=' + json; // key:'json' que recibe el backend -> register()
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    console.log(params);
+    // console.log(params);
     // throw new Error('Error intentionally created to halt process. Not an actual error.');
 
     // send request
     return this._http.post(this.url + 'register', params, {headers: headers});
+  }
+
+  signup(user, getToken = null): Observable<any>{
+
+    if (getToken != null){
+      user.getToken = 'true';
+    }
+
+    let json = JSON.stringify(user);
+    let params = 'json=' + json;
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this._http.post(this.url + 'login', params, {headers: headers});
   }
 }

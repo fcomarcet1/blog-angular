@@ -1,2 +1,26 @@
-<h1>{{pageTitle}}</h1>
-<p>login works!</p>
+<div class="col-md-12 mt-3">
+  <h1>{{pageTitle}}</h1>
+  <p>Login</p>
+  <!-- Register Form -->
+  <form class="col-md-5 ml-0 pl-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="user.email" #email="ngModel"
+             required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+      <small class="invalid-feedback d-block" *ngIf="email.touched && !email.valid">El email no es valido</small>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Password</label>
+      <input id="password" type="password" name="password" class="form-control" [(ngModel)]="user.password" #password="ngModel"
+             required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" >
+      <small class="invalid-feedback d-block" *ngIf="password.touched && !password.valid">
+        Debe contenener al menos un numero, una letra mayuscula, una letra minuscula, y almenos 6 o mas caracteres
+      </small>
+    </div>
+    <input class="btn btn-success" type="submit" value="Acceder" [disabled]="loginForm.invalid" >
+  </form>
+</div>
+
+
+
